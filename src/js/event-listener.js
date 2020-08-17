@@ -6,6 +6,10 @@ import updateMarkup from './update-markup';
 refs.input.addEventListener(
   'input',
   debounce(event => {
-    fetchCoutries(event.target.value).then(data => updateMarkup(data));
+    let value = event.target.value.trim();
+    if (value === '') {
+      return;
+    }
+    fetchCoutries(value).then(data => updateMarkup(data));
   }, 400),
 );
